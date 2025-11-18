@@ -1,0 +1,10 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+aiohttp==3.9.1
+PyYAML==6.0.1
+
+# Optional backends (install as needed)
+# llama-cpp-python==0.2.20  # For llama.cpp backend
+# vllm==0.2.6               # For vLLM backend (high-performance)

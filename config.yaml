@@ -1,0 +1,31 @@
+# Local LLM Serve Configuration
+
+# Server settings
+host: "0.0.0.0"
+port: 8000
+workers: 1
+cors_origins:
+  - "*"
+
+# Backend configuration
+# Options: ollama, llamacpp, vllm
+backend_type: "ollama"
+default_model: "llama2"
+
+# Ollama settings (recommended for offline use)
+ollama_base_url: "http://localhost:11434"
+
+# llama.cpp settings
+# Uncomment and configure if using llamacpp backend
+# llamacpp_model_path: "/models"
+# llamacpp_n_ctx: 4096
+# llamacpp_n_gpu_layers: 0  # Set to -1 for full GPU offload
+
+# vLLM settings (for high-throughput serving)
+# Uncomment and configure if using vllm backend
+# vllm_model_path: "/models/llama-2-7b"
+# vllm_tensor_parallel_size: 1
+# vllm_dtype: "auto"
+
+# Model cache directory
+model_cache_dir: "./model_cache"
