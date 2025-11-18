@@ -1,0 +1,22 @@
+# 저사양 PC 최적화 설정
+# 8GB RAM 환경에서 사용
+
+host: "0.0.0.0"
+port: 8000
+workers: 1
+
+# llama.cpp 사용 (가장 메모리 효율적)
+backend_type: "llamacpp"
+default_model: "llama2-7b-q4"
+
+# 메모리 최적화 설정
+llamacpp_model_path: "./models"
+llamacpp_n_ctx: 2048        # 컨텍스트 크기 줄임
+llamacpp_n_gpu_layers: 0    # CPU만 사용
+llamacpp_n_threads: 4       # CPU 쓰레드 수
+
+model_cache_dir: "./model_cache"
+
+# CORS 설정
+cors_origins:
+  - "*"

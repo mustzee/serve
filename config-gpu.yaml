@@ -1,0 +1,17 @@
+# GPU 가속 설정
+# 16GB+ RAM, NVIDIA GPU 환경
+
+host: "0.0.0.0"
+port: 8000
+workers: 1
+
+# Ollama 사용 (자동 GPU 감지)
+backend_type: "ollama"
+default_model: "codellama"
+
+ollama_base_url: "http://localhost:11434"
+
+model_cache_dir: "./model_cache"
+
+cors_origins:
+  - "*"

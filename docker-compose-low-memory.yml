@@ -1,0 +1,46 @@
+version: '3.8'
+
+# 저사양 PC용 설정 (8GB RAM)
+
+services:
+  # Ollama (가볍게)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: llm-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 4G  # 최대 4GB로 제한
+
+  # LLM Serve API (메모리 제한)
+  llm-serve:
+    build: .
+    container_name: llm-serve-api
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_BACKEND_TYPE=ollama
+      - LLM_OLLAMA_BASE_URL=http://ollama:11434
+      - LLM_DEFAULT_MODEL=llama2
+      - LLM_HOST=0.0.0.0
+      - LLM_PORT=8000
+    depends_on:
+      - ollama
+    restart: unless-stopped
+    volumes:
+      - ./config-low-memory.yaml:/app/config.yaml:ro
+    deploy:
+      resources:
+        limits:
+          memory: 2G  # API 서버는 2GB로 제한
+        reservations:
+          memory: 1G
+
+volumes:
+  ollama_data:
+    driver: local
