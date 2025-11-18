@@ -15,7 +15,24 @@
 
 ## 빠른 시작
 
-### 1. Docker Compose로 실행 (권장)
+> **💡 Docker 필수 아님!** 로컬 설치가 더 간단할 수 있습니다.
+
+### 방법 1: 로컬 설치 (가장 쉬움, 추천! ⭐)
+
+```bash
+# Ollama 설치 (한 줄)
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# 모델 다운로드
+ollama pull llama2
+
+# 바로 사용!
+ollama run llama2
+```
+
+**끝!** 더 자세한 내용은 [Docker 없이 설치하기](INSTALL_WITHOUT_DOCKER.md) 참조
+
+### 방법 2: Docker Compose로 실행
 
 ```bash
 # 저장소 클론
@@ -25,22 +42,12 @@ cd serve
 # Docker Compose로 실행
 docker-compose up -d
 
-# 서버 상태 확인
-curl http://localhost:8000/health
-```
-
-### 2. 모델 다운로드 (Ollama 사용 시)
-
-```bash
-# Ollama 컨테이너에서 모델 다운로드
+# 모델 다운로드
 docker exec -it llm-ollama ollama pull llama2
 docker exec -it llm-ollama ollama pull codellama
-
-# 사용 가능한 모델 목록
-curl http://localhost:8000/v1/models
 ```
 
-### 3. 예제 실행
+### 예제 실행
 
 ```bash
 # Python 코딩 어시스턴트
